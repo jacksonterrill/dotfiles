@@ -1,2 +1,2 @@
 # .dotfiles
-My dotfiles for customizing Linux
+My dotfiles for customizing Wayland Arch Linux

@@ -14,11 +14,10 @@ USAGE
 
 if [ $# -ne 1 ]; then
   usage
-  exit 1
+  exit 0
 fi
 
-while [ "$1" != "" ]; do
-  case $1 in
+case $1 in
   -s | --sync)
     for dir in */; do
       (cd $dir; bash manage*.sh -s)
@@ -31,10 +30,8 @@ while [ "$1" != "" ]; do
   ;;
   -h | --help)
     usage
-    ;;
+  ;;
   *)
     usage
-    ;;
-  esac
-  shift
-done
+  ;;
+esac

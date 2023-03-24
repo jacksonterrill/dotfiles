@@ -2,36 +2,41 @@
 
 usage() {
   cat <<USAGE
-Usage: $0 OPTION
+Usage: $0 OPTION [CONFIG]...
 Options:
   -s, --sync:     Sync system configs with dotfiles repository
   -r, --remove:   Remove links to dotfiles
   -h, --help:     Display usage and available options
+Configs:
 USAGE
+  for dir in */; do
+    [ -e "$dir" ] || continue
+    echo "  ${dir%/}"
+  done
 }
 
-if [ $# -ne 1 ]; then
+if [ "$#" -lt 1 ]; then
   usage
   exit 0
 fi
 
-case $1 in
-  -s | --sync)
-    for dir in */; do
-      [ -e "$dir" ] || break
-      (cd "$dir" || exit; ./manage.sh -s)
+option="$1"
+shift
+
+if [ "$#" -eq 0 ]; then
+  configs="*/"
+else
+  configs="$*"
+fi
+
+case "$option" in
+  -s | --sync | -r | --remove)
+    for dir in $configs; do
+      [ -e "$dir" ] || continue
+      (cd "$dir" || exit; ./manage.sh "$option")
     done
   ;;
-  -r | --remove)
-    for dir in */; do
-      [ -e "$dir" ] || break
-      (cd "$dir" || exit; ./manage.sh -r)
-    done
-  ;;
-  -h | --help)
-    usage
-  ;;
-  *)
+  -h | --help | *)
     usage
   ;;
 esac

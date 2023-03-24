@@ -33,7 +33,7 @@ case "$option" in
   -s | --sync | -r | --remove)
     for dir in $configs; do
       [ -e "$dir" ] || continue
-      (cd "$dir" || exit; ./manage.sh "$option")
+      (cd "$dir" || exit 1; ./manage.sh "$option")
     done
   ;;
   -h | --help | *)

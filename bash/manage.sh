@@ -17,6 +17,9 @@ fi
 
 case "$1" in
   -s | --sync)
+    if command -v pacman > /dev/null && ! pacman -Qi bash > /dev/null 2>&1; then
+      sudo pacman -S --noconfirm --needed bash
+    fi
     (ln -s -f "$PWD"/bashrc ~/.bashrc)
     (ln -s -f "$PWD"/bash_profile ~/.bash_profile)
   ;;

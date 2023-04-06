@@ -17,10 +17,10 @@ fi
 
 case "$1" in
   -s | --sync)
-    (ln -s -f "$PWD"/aliasrc ~/.aliasrc)
+    (ln -s -f "$PWD"/aliasrc "$HOME"/.aliasrc)
   ;;
   -r | --remove)
-    (rm -f ~/.aliasrc)
+    (rm -f "$HOME"/.aliasrc)
   ;;
   -h | --help | *)
     usage

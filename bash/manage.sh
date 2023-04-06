@@ -20,12 +20,12 @@ case "$1" in
     if command -v pacman > /dev/null && ! pacman -Qi bash > /dev/null 2>&1; then
       sudo pacman -S --noconfirm --needed bash
     fi
-    (ln -s -f "$PWD"/bashrc ~/.bashrc)
-    (ln -s -f "$PWD"/bash_profile ~/.bash_profile)
+    (ln -s -f "$PWD"/bashrc "$HOME"/.bashrc)
+    (ln -s -f "$PWD"/bash_profile "$HOME"/.bash_profile)
   ;;
   -r | --remove)
-    (rm -f ~/.bashrc)
-    (rm -f ~/.bash_profile)
+    (rm -f "$HOME"/.bashrc)
+    (rm -f "$HOME"/.bash_profile)
   ;;
   -h | --help | *)
     usage

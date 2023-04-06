@@ -3,6 +3,7 @@
 usage() {
   cat <<USAGE
 Usage: $0 OPTION [CONFIG]...
+  If no configs are specified, the selected option will be applied to all configs
 Options:
   -s, --sync:     Sync system configs with dotfiles repository
   -r, --remove:   Remove links to dotfiles

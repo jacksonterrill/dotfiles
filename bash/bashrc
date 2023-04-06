@@ -2,8 +2,8 @@
 [[ $- != *i* ]] && return
 
 # Source aliases if available
-if [ -f ~/.aliasrc ]; then
-  . ~/.aliasrc
+if [ -f "$HOME"/.aliasrc ]; then
+  . "$HOME"/.aliasrc
 fi
 
 # Set bash prompt

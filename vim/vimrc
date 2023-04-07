@@ -1,0 +1,22 @@
+" catppuccin macchiato theme
+set termguicolors
+colorscheme catppuccin_macchiato
+syntax on
+hi Normal ctermbg=NONE guibg=NONE
+hi CursorLine ctermbg=NONE guibg=NONE
+
+" UI
+set number              " show line numbers
+set relativenumber      " show relative line numbers
+set cul                 " highlight current line
+
+" Indentation
+set autoindent          " auto-indent
+set tabstop=2           " tab spacing
+set softtabstop=2       " unify
+set shiftwidth=2        " indent/outdent by 2 columns
+set shiftround          " always indent/outdent to the nearest tabstop
+set expandtab           " use spaces instead of tabs
+set smartindent         " automatically insert one extra level of indentation
+set smarttab            " use tabs at the start of a line, spaces elsewhere
+set nowrap              " don't wrap text

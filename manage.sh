@@ -12,8 +12,8 @@ Configs:
 USAGE
   for dir in */; do
     [ -e "$dir" ] || continue
-    echo "  ${dir%/}"
-  done
+    echo "${dir%/}"
+  done | column
 }
 
 if [ "$#" -lt 1 ]; then

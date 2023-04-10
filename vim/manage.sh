@@ -20,12 +20,14 @@ case "$1" in
     if command -v pacman > /dev/null && ! pacman -Qi vim > /dev/null 2>&1; then
       sudo pacman -S --noconfirm --needed vim
     fi
-    (ln -s -f "$PWD"/vimrc "$HOME"/.vimrc)
-    (ln -s -f "$PWD"/vim "$HOME"/.vim)
+    rm -r -f "$HOME"/.vim
+    dir=$(cd -- "$(dirname -- "$0")" || exit 1; echo "$PWD")
+    ln -s -f "$dir"/vimrc "$HOME"/.vimrc
+    ln -s -f "$dir"/vim "$HOME"/.vim
   ;;
   -r | --remove)
-    (rm -f "$HOME"/.vimrc)
-    (rm -r -f "$HOME"/.vim)
+    rm -f "$HOME"/.vimrc
+    rm -r -f "$HOME"/.vim
   ;;
   -h | --help | *)
     usage

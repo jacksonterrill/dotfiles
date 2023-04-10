@@ -1,5 +1,7 @@
 #!/bin/sh
 
+dir=$(cd -- "$(dirname -- "$0")" && pwd -P)
+
 usage() {
   cat <<USAGE
 Usage: $0 OPTION [CONFIGS...]
@@ -10,9 +12,9 @@ Options:
   -h, --help:     Display usage and available options
 Configs:
 USAGE
-  for dir in */; do
-    [ -e "$dir" ] || continue
-    echo "${dir%/}"
+  for config in "$dir"/*/; do
+    [ -e "$config" ] || continue
+    basename "$config"
   done | column
 }
 
@@ -25,16 +27,16 @@ option="$1"
 shift
 
 if [ "$#" -eq 0 ]; then
-  configs="*/"
+  configs="$dir/*/"
 else
   configs="$*"
 fi
 
 case "$option" in
   -s | --sync | -r | --remove)
-    for dir in $configs; do
-      [ -e "$dir" ] || continue
-      (cd "$dir" || exit 1; ./manage.sh "$option")
+    for config in $configs; do
+      [ -e "$config" ] || continue
+      (cd "$config" || exit 1; ./manage.sh "$option")
     done
   ;;
   -h | --help | *)

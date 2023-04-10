@@ -17,10 +17,12 @@ fi
 
 case "$1" in
   -s | --sync)
-    (ln -s -f "$PWD"/pre-commit "$PWD"/../.git/hooks/pre-commit)
+    dir=$(cd -- "$(dirname -- "$0")" || exit 1; echo "$PWD")
+    ln -s -f "$dir"/pre-commit "$dir"/../.git/hooks/pre-commit
   ;;
   -r | --remove)
-    (rm -f "$PWD"/../.git/hooks/pre-commit)
+    dir=$(cd -- "$(dirname -- "$0")" || exit 1; echo "$PWD")
+    rm -f "$dir"/../.git/hooks/pre-commit
   ;;
   -h | --help | *)
     usage

@@ -1,7 +1,7 @@
 #!/bin/sh
 
-FILES=$(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g')
-[ -z "$FILES" ] && exit 0
+files=$(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g')
+[ -z "$files" ] && exit 0
 
 
 # shell-check all staged files, prevent commit if it finds errors
@@ -10,7 +10,7 @@ if command -v pacman > /dev/null && ! pacman -Qi shellcheck > /dev/null 2>&1; th
 fi
 
 if command -v shellcheck > /dev/null; then
-  echo "$FILES" | xargs shellcheck
+  echo "$files" | awk '/\.sh$/' | xargs shellcheck
   exit $?
 fi
 

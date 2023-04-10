@@ -17,10 +17,13 @@ fi
 
 case "$1" in
   -s | --sync)
-    (ln -s -f "$PWD"/aliasrc "$HOME"/.aliasrc)
+    ln -s -f "$PWD"/aliasrc "$HOME"/.aliasrc
+    dir=$(cd "$(dirname "$0")" || exit 1; echo "$PWD")
+    echo "alias dotfiles='$dir/../manage.sh'" > "$HOME"/.dotfiles-alias
   ;;
   -r | --remove)
-    (rm -f "$HOME"/.aliasrc)
+    rm -f "$HOME"/.aliasrc
+    rm -f "$HOME"/.dotfiles-alias
   ;;
   -h | --help | *)
     usage

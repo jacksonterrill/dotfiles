@@ -27,7 +27,11 @@ case "$1" in
   -r | --remove)
     rm -r -f "$HOME"/.config/alacritty
   ;;
-  -h | --help | *)
+  -h | --help)
     usage
+  ;;
+  *)
+    usage
+    exit 1
   ;;
 esac

@@ -39,7 +39,11 @@ case "$option" in
       (cd "$config" || exit 1; ./manage.sh "$option")
     done
   ;;
-  -h | --help | *)
+  -h | --help)
     usage
+  ;;
+  *)
+    usage
+    exit 1
   ;;
 esac

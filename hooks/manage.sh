@@ -24,7 +24,11 @@ case "$1" in
     dir=$(cd -- "$(dirname -- "$0")" || exit 1; echo "$PWD")
     rm -f "$dir"/../.git/hooks/pre-commit
   ;;
-  -h | --help | *)
+  -h | --help)
     usage
+  ;;
+  *)
+    usage
+    exit 1
   ;;
 esac

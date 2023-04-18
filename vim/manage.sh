@@ -29,7 +29,11 @@ case "$1" in
     rm -f "$HOME"/.vimrc
     rm -r -f "$HOME"/.vim
   ;;
-  -h | --help | *)
+  -h | --help)
     usage
+  ;;
+  *)
+    usage
+    exit 1
   ;;
 esac

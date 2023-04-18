@@ -25,7 +25,11 @@ case "$1" in
     rm -f "$HOME"/.aliasrc
     rm -f "$HOME"/.dotfiles-alias
   ;;
-  -h | --help | *)
+  -h | --help)
     usage
+  ;;
+  *)
+    usage
+    exit 1
   ;;
 esac

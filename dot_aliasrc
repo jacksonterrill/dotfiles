@@ -1,0 +1,2 @@
+# Common aliases for all shells
+alias ls='ls --color=auto'

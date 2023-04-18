@@ -1,7 +1,0 @@
-# Source dotfile management alias
-if [ -f "$HOME"/.dotfiles-alias ]; then
-  . "$HOME"/.dotfiles-alias
-fi
-
-# Common aliases for all shells
-alias ls='ls --color=auto'

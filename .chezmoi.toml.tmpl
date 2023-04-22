@@ -1,0 +1,22 @@
+{{- /* Determines if machine is a laptop */ -}}
+{{- $isLaptop := false -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $isLaptop = contains "MacBook" (output "sysctl" "-n" "hw.model") -}}
+{{- else if eq .chezmoi.os "linux" -}}
+{{-   $isLaptop = eq "laptop" (output "hostnamectl" "--json=short" | mustFromJson).Chassis -}}
+{{- end -}}
+
+{{- /* Creates easy identifiers for Linux distros */ -}}
+{{- $osId := .chezmoi.os -}}
+{{- if hasKey .chezmoi.osRelease "id" -}}
+{{-   $osId = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
+{{- $osIdLike := $osId -}}
+{{- if hasKey .chezmoi.osRelease "idLike" -}}
+{{-   $osIdLike = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.idLike -}}
+{{- end -}}
+
+[data]
+  isLaptop = {{ $isLaptop }}
+  osId = {{ $osId | quote }}
+  osIdLike = {{ $osIdLike | quote }}

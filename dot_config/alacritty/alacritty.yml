@@ -2,7 +2,6 @@ import:
   - ~/.config/alacritty/catppuccin-macchiato.yml
 
 window:
-  opacity: .85
   padding:
     x: 8
     y: 8
@@ -30,5 +29,3 @@ font:
   bold_italic:
     family: Hack Nerd Font Mono
     style: Bold Italic
-
-

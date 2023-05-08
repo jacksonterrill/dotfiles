@@ -1,0 +1,11 @@
+# Source aliases if available
+if [ -f "$HOME"/.aliasrc ]; then
+  . "$HOME"/.aliasrc
+fi
+
+# Set zsh prompt
+if [ -n "$SSH_CLIENT" ]; then
+  PROMPT='%F{blue}%n@%m%f %F{magenta}%1~%f %F{green}%#%f ' # username@host dir %
+else
+  PROMPT='%F{magenta}%1~%f %F{green}%#%f ' # dir %
+fi

@@ -1,6 +1,6 @@
 #!/bin/sh
 error() {
-  echo "Error: $@" 1>&2
+  echo "Error:" "$@" 1>&2
 }
 
 spotify_running() {

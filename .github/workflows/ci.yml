@@ -19,7 +19,7 @@ jobs:
         with:
           filters: |
             shell:
-              - '*.sh'
+              - '**/*.sh'
       - name: Run ShellCheck
         if: steps.changed-files.outputs.shell == 'true'
         uses: ludeeus/action-shellcheck@2.0.0

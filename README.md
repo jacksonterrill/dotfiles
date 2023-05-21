@@ -5,7 +5,7 @@
   <p>These dotfiles were primarily designed for my Wayland Arch Linux system, but should be mostly compatible with other Linux distributions and MacOS.</p>
   <div>
     <a href="https://github.com/jacksonterrill/dotfiles/actions/">
-        <img src="https://github.com/jacksonterrill/dotfiles/workflows/dotfiles-ci.yml/badge.svg"
+        <img src="https://github.com/jacksonterrill/dotfiles/workflows/dotfiles-ci/badge.svg"
             alt="GitHub Actions CI Status">
     </a>
     <a href="https://github.com/jacksonterrill/dotfiles">

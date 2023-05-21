@@ -1,18 +1,19 @@
 #!/bin/sh
 error() {
-  echo "Error:" "$@" 1>&2
+  printf "Error: %s\n" "$1" 1>&2
+  exit 1
 }
 
 usage() {
   program_name=$(basename "$0")
   cat <<USAGE
 Usage:
-  $program_name -h | --help    Show usage and available commands
-  $program_name get            Get the current volume
-  $program_name set <level>    Set the volume to the specified level in range [0, 100]
-  $program_name raise | up     Raise the volume by 5 (Upper bound = 100)
-  $program_name lower | down   Lower the volume by 5 (Lower bound = 0)
-  $program_name toggle-mute    Toggle mute
+  $program_name -h | --help               Show usage and available commands
+  $program_name get                       Get the current volume
+  $program_name set <level>               Set the volume to the specified level in range [0, 100]
+  $program_name (raise | up) <amount>     Raise the volume by the specified amount (Upper bound = 100)
+  $program_name (lower | down) <amount>   Lower the volume by the specified amount (Lower bound = 0)
+  $program_name toggle-mute               Toggle mute
 USAGE
 }
 
@@ -21,14 +22,12 @@ get_volume() {
 }
 
 set_volume() {
-  if [ "$#" -ne 1 ]; then
-    error "Invalid volume specification"
-    exit 1
-  elif [ "$1" -gt 100 ]; then
+  if [ "$1" -gt 100 ] 2>/dev/null; then
     pactl set-sink-volume @DEFAULT_SINK@ 100%
   else
     pactl set-sink-volume @DEFAULT_SINK@ "$1%"
   fi
+  pactl set-sink-mute @DEFAULT_SINK@ no
 }
 
 raise_volume() {
@@ -37,16 +36,17 @@ raise_volume() {
   else
     pactl set-sink-volume @DEFAULT_SINK@ +5%
   fi
+  pactl set-sink-mute @DEFAULT_SINK@ no
 }
 
 lower_volume() {
   pactl set-sink-volume @DEFAULT_SINK@ -5%
+  pactl set-sink-mute @DEFAULT_SINK@ no
 }
 
 toggle_mute() {
   pactl set-sink-mute @DEFAULT_SINK@ toggle
 }
-
 
 if [ "$#" -lt 1 ]; then
   usage
@@ -59,23 +59,41 @@ case "$1" in
     exit 0
   ;;
   get)
+    shift
+    if [ "$#" -ne 0 ]; then
+      error "Invalid arguments"
+    fi
     get_volume
   ;;
   set)
     shift
-    set_volume "$@"
+    if [ "$#" -ne 1 ]; then
+      error "Invalid arguments"
+    fi
+    set_volume "$1"
   ;;
   raise | up)
-    raise_volume
+    shift
+    if [ "$#" -ne 1 ]; then
+      error "Invalid arguments"
+    fi
+    raise_volume "$1"
   ;;
   lower | down)
-    lower_volume
+    shift
+    if [ "$#" -ne 1 ]; then
+      error "Invalid arguments"
+    fi
+    lower_volume "$1"
   ;;
   toggle-mute)
+    shift
+    if [ "$#" -ne 0 ]; then
+      error "Invalid arguments"
+    fi
     toggle_mute
   ;;
   *)
     error "Invalid command"
-    exit 1
   ;;
 esac

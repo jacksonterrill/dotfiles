@@ -1,6 +1,7 @@
 #!/bin/sh
 error() {
-  echo "Error:" "$@" 1>&2
+  printf "Error: %s\n" "$1" 1>&2
+  exit 1
 }
 
 spotify_running() {
@@ -27,7 +28,6 @@ for arg; do
   case "$arg" in
     -p | --player=* | -a | --all-players | -i | --ignore-player=* | -l | --list-all)
       error "spotifyctl is only designed to work with the Spotify media player"
-      exit 1
     ;;
     play | play-pause | next | previous | position | volume | open | loop | shuffle)
       must_be_running=true

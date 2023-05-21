@@ -13,7 +13,8 @@ Usage:
   $program_name set <level>               Set the volume to the specified level in range [0, 100]
   $program_name (raise | up) <amount>     Raise the volume by the specified amount (Upper bound = 100)
   $program_name (lower | down) <amount>   Lower the volume by the specified amount (Lower bound = 0)
-  $program_name toggle-mute               Toggle mute
+  $program_name toggle-input-mute         Toggle input mute
+  $program_name toggle-output-mute        Toggle output mute
 USAGE
 }
 
@@ -44,7 +45,11 @@ lower_volume() {
   pactl set-sink-mute @DEFAULT_SINK@ no
 }
 
-toggle_mute() {
+toggle_input_mute() {
+  pactl set-source-mute @DEFAULT_SOURCE@ toggle
+}
+
+toggle_output_mute() {
   pactl set-sink-mute @DEFAULT_SINK@ toggle
 }
 
@@ -86,12 +91,19 @@ case "$1" in
     fi
     lower_volume "$1"
   ;;
-  toggle-mute)
+  toggle-input-mute)
     shift
     if [ "$#" -ne 0 ]; then
       error "Invalid arguments"
     fi
-    toggle_mute
+    toggle_input_mute
+  ;;
+  toggle-output-mute)
+    shift
+    if [ "$#" -ne 0 ]; then
+      error "Invalid arguments"
+    fi
+    toggle_output_mute
   ;;
   *)
     error "Invalid command"

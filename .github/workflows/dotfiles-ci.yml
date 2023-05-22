@@ -1,3 +1,5 @@
+name: dotfiles-ci
+
 on:
   push:
     branches: [ "*" ]

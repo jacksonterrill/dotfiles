@@ -39,7 +39,7 @@ case "$1" in
     while true; do
       wallpaper=$(find "$1" -type f \( -name "*.jpeg" -o -name "*.jpg" -o -name "*.png" -o -name "*.gif" \) ! -wholename "$wallpaper" | shuf -n 1)
       swww img "$wallpaper" 
-      sleep 5
+      sleep 500
     done
   ;;
   *)

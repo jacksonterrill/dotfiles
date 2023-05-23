@@ -29,7 +29,7 @@ case "$1" in
       error "Invalid arguments"
     fi
     wallpaper=$(find "$1" -type f \( -name "*.jpeg" -o -name "*.jpg" -o -name "*.png" -o -name "*.gif" \) | shuf -n 1)
-    swaylock --image "$wallpaper"
+    swaylock -f --image "$wallpaper"
   ;;
   *)
     error "Invalid command"

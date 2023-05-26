@@ -1,4 +1,4 @@
-timeout 600 "swaylock -f"
+timeout 600 "~/.config/swaylock/scripts/swaylock-randomize.sh -d ~/.config/wallpapers"
 timeout 900 "hyprctl dispatch dpms off" resume "hyprctl dispatch dpms on"
 timeout 900 "playerctl -a pause"
 timeout 1200 "systemctl suspend"

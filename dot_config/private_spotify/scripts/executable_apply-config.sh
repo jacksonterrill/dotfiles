@@ -26,5 +26,8 @@ if ! curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplac
   error "Could not install Spicetify Marketplace"
 fi
 
+spicetify config custom_apps lyrics-plus
+spicetify apply
+
 printf "Successfully applied custom Spotify config\n"
 exit 0

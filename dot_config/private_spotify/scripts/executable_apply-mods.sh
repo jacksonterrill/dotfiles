@@ -12,7 +12,7 @@ if ! command -v spotify > /dev/null; then
   error "Spotify not installed"
 fi
 
-if ! sh <(curl -sSL https://raw.githubusercontent.com/SpotX-CLI/SpotX-Linux/main/install.sh); then
+if ! curl -fsSL https://raw.githubusercontent.com/SpotX-CLI/SpotX-Linux/main/install.sh | sh; then
   error "Could not install SpotX adblocker"
 fi
 

@@ -29,5 +29,5 @@ fi
 spicetify config custom_apps lyrics-plus
 spicetify apply
 
-printf "Successfully applied custom Spotify config\n"
+printf "Successfully applied Spotify mods\n"
 exit 0

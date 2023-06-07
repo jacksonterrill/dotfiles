@@ -1,4 +1,5 @@
 return {
+  { "Mofiqul/vscode.nvim" },
   { "ellisonleao/gruvbox.nvim" },
   {
     "catppuccin/nvim",
@@ -26,7 +27,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin",
+      colorscheme = "vscode",
     },
   },
 }

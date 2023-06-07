@@ -1,15 +1,11 @@
-" catppuccin macchiato theme
 set termguicolors
-colorscheme catppuccin_macchiato
+colorscheme codedark
 syntax on
-hi Normal ctermbg=NONE guibg=NONE
-hi CursorLine ctermbg=NONE guibg=NONE
 
 " UI
 set number                " show line numbers
 set relativenumber        " show relative line numbers
 set cul                   " highlight current line
-set spell spelllang=en_us " spellcheck
 
 " Indentation
 set autoindent            " auto-indent

@@ -23,3 +23,8 @@ set mouse=a
 set noesckeys
 let &t_SI = "\e[5 q"
 let &t_EI = "\e[1 q"
+augroup cursorRefresh
+  au!
+  autocmd VimEnter * silent !echo -ne "\e[1 q"
+  autocmd VimLeave * silent !echo -ne "\e[5 q"
+augroup END

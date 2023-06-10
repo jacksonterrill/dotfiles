@@ -20,7 +20,6 @@ set nowrap                " don't wrap text
 
 " Input
 set mouse=a
-set noesckeys
 let &t_SI = "\e[5 q"
 let &t_EI = "\e[1 q"
 augroup cursorRefresh
